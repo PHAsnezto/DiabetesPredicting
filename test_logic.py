@@ -3,7 +3,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
 import sys
 
-# --- GIAI ĐOẠN 1 & 2: CHUẨN BỊ ---
+# --- GIAI ĐOẠN 1 & 2: CHUẨN BỊ --- #
 def setup_model():
     try:
         df = pd.read_csv('diabetes_data.csv')
@@ -21,13 +21,13 @@ def setup_model():
         print("❌ Lỗi: Không tìm thấy file 'diabetes_data.csv'!")
         sys.exit()
 
-# --- GIAI ĐOẠN 3: HÀM NHẬP LIỆU TƯƠNG TÁC ---
+# --- GIAI ĐOẠN 3: HÀM NHẬP LIỆU TƯƠNG TÁC --- #
 def get_user_input():
     print("\n" + "="*30)
     print(" NHẬP CHỈ SỐ SỨC KHỎE")
     print("="*30)
     
-    # Danh sách các câu hỏi tương ứng với 8 cột dữ liệu
+    # Danh sách các câu hỏi tương ứng với 8 cột dữ liệu #
     questions = [
         ("Số lần mang thai", 0, 20),
         ("Nồng độ Glucose (sau 2h)", 0, 300),
@@ -54,22 +54,22 @@ def get_user_input():
     
     return user_data
 
-# --- CHƯƠNG TRÌNH CHÍNH ---
+# --- CHƯƠNG TRÌNH CHÍNH --- #
 def main():
-    # 1. Khởi tạo
+    # 1. Khởi tạo #
     model, scaler, column_names = setup_model()
     
-    # 2. Lấy dữ liệu từ bàn phím
+    # 2. Lấy dữ liệu từ bàn phím #
     data = get_user_input()
     
-    # 3. Xử lý dự đoán
+    # 3. Xử lý dự đoán #
     user_df = pd.DataFrame([data], columns=column_names)
     user_scaled = scaler.transform(user_df)
     
     prediction = model.predict(user_scaled)
     probability = model.predict_proba(user_scaled)
     
-    # 4. Xuất kết quả
+    # 4. Xuất kết quả #
     print("\n" + "*"*30)
     if prediction[0] == 1:
         print("🚩 KẾT QUẢ: CÓ NGUY CƠ CAO")
